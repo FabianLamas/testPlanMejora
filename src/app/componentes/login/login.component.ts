@@ -11,6 +11,7 @@ import { Usuario } from '../../modelos/usuario';
 export class LoginComponent implements OnInit {
 
   users: Usuario[] = [];
+  ok: boolean;
   datosUsuario: any;
 
   constructor( private usersService: MainService ) { }
@@ -20,17 +21,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(formLogin: NgForm) {
-
+    
     this.datosUsuario = formLogin.value;
+    this.ok = false;
 
     for (let i = 0; i < this.users.length; i++) {
 
       if (this.users[i].user == this.datosUsuario.user && this.users[i].pass == this.datosUsuario.pass) {
         console.log('Aceptado');
-      } else {
-        console.log('Rechazado');
+        this.ok = true;
       }
+    }
 
+    if (this.ok) {
+      
+    } else {
+      this.ok = false;
+      console.log('Rechazado');
     }
 
   }
