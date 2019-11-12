@@ -12,7 +12,28 @@ export class MainService {
   user1: Usuario = new Usuario();
   user2: Usuario = new Usuario();
 
+  private users: Usuario[] = [
+    {
+      user: 'fabi',
+      pass: '123',
+      nombre: 'fabian',
+      apellido: 'lamas',
+      mail: 'fabian.lamas@kof.com.mx'
+    },
+    {
+      user: 'ian',
+      pass: '123',
+      nombre: 'ian',
+      apellido: 'clavero',
+      mail: 'ian.clavero@kof.com.mx'
+    }
+  ];
+
   constructor(private http: HttpClient) { }
+
+  getUsers() {
+    return this.users;
+  }
 
   getAuditDocuments(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:62889/api/Grupos/Listar');
@@ -20,43 +41,3 @@ export class MainService {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// getMascotas(): Observable<Mascota[]> {
-//   return this.http.get<Mascota[]>('https://localhost:44313/api/Mascotas/listar');
-// }
-
-// getPublicaciones(): Observable<Publicacion[]>{
-//   return this.http.get<Publicacion[]>(this.urlPublicaciones+'Listar');
-// }
-
-// getPublicacion(id: number): Observable<Publicacion> {
-//   return this.http.get<Publicacion>(this.urlPublicaciones+'Mostrar/'+id);
-// }
-
-// postPublicacion(publicacion: Publicacion): Observable<Publicacion>{
-//   return this.http.post<Publicacion>(this.urlPublicaciones+'Crear', publicacion);
-// }
-
-// postMascota(mascota: Mascota){
-//   return this.http.post('https://localhost:44313/api/Mascotas/Crear', mascota);
-// }
