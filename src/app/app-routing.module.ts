@@ -6,7 +6,7 @@ import { ResponsablesComponent } from './componentes/responsables/responsables.c
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'responsables', component: ResponsablesComponent },
-  { path: '**', component: LoginComponent }
+  // { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
