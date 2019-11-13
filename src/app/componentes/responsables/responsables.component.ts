@@ -3,6 +3,7 @@ import { MainService } from 'src/app/servicios/main.service';
 import { AuditDocument } from '../../modelos/auditDocument';
 import { NonConformanceDocument } from '../../modelos/nonConformanceDocument';
 import { ListaResponsables } from '../../modelos/listaResponsables';
+import { log } from 'util';
 
 @Component({
   selector: 'app-responsables',
@@ -13,7 +14,7 @@ export class ResponsablesComponent implements OnInit {
 
   auditDocumentList: AuditDocument[];
   nonConformanceDocumentList: NonConformanceDocument[];
-  listaResponsables: ListaResponsables[];
+  listaResponsables: ListaResponsables[] = [];
 
   constructor(private mainService: MainService) { }
 
@@ -24,36 +25,20 @@ export class ResponsablesComponent implements OnInit {
 
   generarLista() {
 
-  //   for (let i = 0; i < this.nonConformanceDocumentList.length; i++) {
+    for (let i = 0; i < this.nonConformanceDocumentList.length; i++) {
 
-  //     for (let j = 0; j < this.auditDocumentList.length; j++) {
+      for (let j = 0; j < this.auditDocumentList.length; j++) {
 
-  //       if (this.nonConformanceDocumentList[i].auditDocument === this.auditDocumentList[j].id) {
-  //           console.log('entreee');
+        if (this.nonConformanceDocumentList[i].auditDocument === this.auditDocumentList[j].id) {
+              // tslint:disable-next-line:max-line-length
+              var itemListaResp: ListaResponsables = new ListaResponsables( this.auditDocumentList[j].auditNumber, 'En proceso', this.nonConformanceDocumentList[i].number,'Fabian Lamas',this.nonConformanceDocumentList[i].creationStamp,5,this.nonConformanceDocumentList[i].sector,'Reclamos clientes',this.nonConformanceDocumentList[i].topic,'Naranja',this.nonConformanceDocumentList[i].size,this.nonConformanceDocumentList[i].responsible,this.nonConformanceDocumentList[i].answerType );
+        }
+      }
+      this.listaResponsables.push(itemListaResp);
+    }
 
-  //           this.listaResponsables[i].auditNumber = this.auditDocumentList[j].auditNumber;
-  //           this.listaResponsables[i].estadoActual = 'En proceso';
-  //           this.listaResponsables[i].number = this.nonConformanceDocumentList[i].number;
-  //           this.listaResponsables[i].author = 'Fabian Lamas';
-  //           this.listaResponsables[i].creationStamp = this.nonConformanceDocumentList[i].creationStamp;
-  //           this.listaResponsables[i].dias = 5;
-  //           this.listaResponsables[i].sector = this.nonConformanceDocumentList[i].sector;
-  //           this.listaResponsables[i].origenPlanMejora = 'Reclamos clientes';
-  //           this.listaResponsables[i].topic = this.nonConformanceDocumentList[i].topic;
-  //           this.listaResponsables[i].sabor = 'Naranja';
-  //           this.listaResponsables[i].size = this.nonConformanceDocumentList[i].size;
-  //           this.listaResponsables[i].responsible = this.nonConformanceDocumentList[i].responsible;
-  //           this.listaResponsables[i].answerType = this.nonConformanceDocumentList[i].answerType;
-  //           }
-  //       }
-        
-  //       var itemListaResp = new ListaResponsables();
-
-  //       this.listaResponsables.push(persona);
-  //     }
-
-  //   console.log(this.listaResponsables.number);
-   }
+    console.log(this.listaResponsables[1].number);
+  }
 
   getAuditDocuments() {
     this.mainService.getAuditDocuments().subscribe( data => {
