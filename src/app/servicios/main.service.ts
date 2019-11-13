@@ -3,6 +3,7 @@ import { Usuario } from '../modelos/usuario';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuditDocument } from '../modelos/auditDocument';
+import { NonConformanceDocument } from '../modelos/nonConformanceDocument';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,11 @@ export class MainService {
     return this.users;
   }
 
-  getAuditDocuments(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:62889/api/Grupos/Listar');
+  getAuditDocuments(): Observable<AuditDocument[]> {
+    return this.http.get<AuditDocument[]>('http://localhost:62889/api/AuditDocuments/Listar');
+  }
+  getNonConformanceDocuments(): Observable<NonConformanceDocument[]> {
+    return this.http.get<NonConformanceDocument[]>('http://localhost:62889/api/NonConformanceDocuments/Listar');
   }
 }
 

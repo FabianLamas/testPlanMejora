@@ -3,6 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MainService } from 'src/app/servicios/main.service';
+import { AuditDocument } from '../../modelos/auditDocument';
+import { NonConformanceDocument } from '../../modelos/nonConformanceDocument';
+import { ListaResponsables } from '../../modelos/listaResponsables';
+import { log } from 'util';
 
 
 export interface UserData {
@@ -35,6 +39,9 @@ export class ResponsablesComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   auditDocument: any;
+  auditDocumentList: AuditDocument[];
+  nonConformanceDocumentList: NonConformanceDocument[];
+  listaResponsables: ListaResponsables[] = [];
 
   constructor(private mainService: MainService) {
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
@@ -53,19 +60,50 @@ export class ResponsablesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+    this.getNonConformanceDocuments();
+  }
+
+  generarLista() {
+
+    for (let i = 0; i < this.nonConformanceDocumentList.length; i++) {
+
+      for (let j = 0; j < this.auditDocumentList.length; j++) {
+
+        if (this.nonConformanceDocumentList[i].auditDocument === this.auditDocumentList[j].id) {
+              // tslint:disable-next-line:max-line-length
+              var itemListaResp: ListaResponsables = new ListaResponsables( this.auditDocumentList[j].auditNumber, 'En proceso', this.nonConformanceDocumentList[i].number,'Fabian Lamas',this.nonConformanceDocumentList[i].creationStamp,5,this.nonConformanceDocumentList[i].sector,'Reclamos clientes',this.nonConformanceDocumentList[i].topic,'Naranja',this.nonConformanceDocumentList[i].size,this.nonConformanceDocumentList[i].responsible,this.nonConformanceDocumentList[i].answerType );
+        }
+      }
+      this.listaResponsables.push(itemListaResp);
+    }
+
+    console.log(this.listaResponsables[1].number);
   }
 
   getAuditDocuments() {
     this.mainService.getAuditDocuments().subscribe( data => {
-      this.auditDocument = data;
+      
       this.dataSource = new MatTableDataSource(data);
-      console.log('call 1');
-      console.log(this.auditDocument);
+      this.auditDocumentList = data;
+      console.log('call API getAuditDocuments');
+      console.log(this.auditDocumentList);
     }, error => {
-      console.log('fallo el call de la API2');
+      console.log('fallo el call de la API getAuditDocuments');
       console.log(error);
     });
   }
+
+  getNonConformanceDocuments() {
+    this.mainService.getNonConformanceDocuments().subscribe( data => {
+      this.nonConformanceDocumentList = data;
+      console.log('call API getNonConformanceDocuments');
+      console.log(this.nonConformanceDocumentList);
+    }, error => {
+      console.log('fallo el call de la API getNonConformanceDocuments');
+      console.log(error);
+    });
+  }
+
 }
 
 function createNewUser(id: number): UserData {
