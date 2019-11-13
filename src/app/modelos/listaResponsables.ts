@@ -1,5 +1,3 @@
-import { AuditDocument } from './auditDocument';
-import { NonConformanceDocument } from './nonConformanceDocument';
 export class ListaResponsables{
     auditNumber: string;
     estadoActual: string;
