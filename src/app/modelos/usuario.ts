@@ -5,3 +5,11 @@ export class Usuario {
  apellido: string;
  mail: string;
 }
+
+export class Persona {
+    constructor (nombre, edad, email){
+        nombre;
+        edad;
+        email;
+    }
+}
