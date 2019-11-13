@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { NgForm } from '@angular/forms';
-=======
 import { NgForm, FormsModule } from '@angular/forms';
 import { MainService } from '../../servicios/main.service';
 import { Usuario } from '../../modelos/usuario';
->>>>>>> 9d994122b293e3cd658925db80456881eefe5ff9
 
 @Component({
   selector: 'app-login',
@@ -21,11 +17,7 @@ export class LoginComponent implements OnInit {
   constructor( private usersService: MainService ) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    
-=======
     this.users = this.usersService.getUsers();
->>>>>>> 9d994122b293e3cd658925db80456881eefe5ff9
   }
 
   login(formLogin: NgForm) {
