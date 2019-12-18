@@ -3,7 +3,8 @@ export class ListaResponsables{
     estadoActual: string;
     number: number;
     author: string;
-    creationStamp: Date;
+    creationStamp: string;
+    //creationStamp: Date;
     dias: number;
     sector: string;
     origenPlanMejora: string;
@@ -13,7 +14,7 @@ export class ListaResponsables{
     responsible: string;
     answerType: string;
 
-    constructor( auditNumber: string, estadoActual: string, number: number, author: string, creationStamp: Date, dias: number, sector: string, origenPlanMejora: string, topic: string, sabor: string, size: string, responsible: string, answerType: string ) {
+    constructor( auditNumber: string, estadoActual: string, number: number, author: string, creationStamp: string, dias: number, sector: string, origenPlanMejora: string, topic: string, sabor: string, size: string, responsible: string, answerType: string ) {
         this.auditNumber = auditNumber;
         this.estadoActual = estadoActual;
         this.number = number;

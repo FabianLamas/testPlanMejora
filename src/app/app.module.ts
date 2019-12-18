@@ -13,13 +13,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { TesttablaComponent } from './componentes/testtabla/testtabla.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ResponsablesComponent
+    ResponsablesComponent,
+    TesttablaComponent
   ],
   imports: [
     BrowserModule,
